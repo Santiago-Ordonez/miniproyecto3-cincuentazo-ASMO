@@ -1,0 +1,57 @@
+package model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class Player implements IPlayer{
+    protected String name;
+    protected List<Card> hand;
+    protected boolean isHuman;
+
+    public Player(String name, boolean isHuman){
+        this.name = name;
+        this.isHuman = isHuman;
+        this.hand = new ArrayList<>(4);
+    }
+
+    @Override
+    public String getName(){return name;}
+
+    @Override
+    public List<Card> getHand(){return hand;}
+
+    @Override
+    public boolean isHuman(){return isHuman;}
+
+    @Override
+    public void addCard(Card card){
+        if(hand.size() < 4){hand.add(card);}
+    }
+
+    @Override
+    public void removeCard(Card card){hand.remove(card);}
+
+    @Override
+    public int getHandSize(){return hand.size();}
+
+    @Override
+    public boolean hasValidMove(int currentSum){
+        for(Card card : hand){
+            if(card.getValue() + currentSum > 50){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public void clearHand(){hand.clear();}
+
+    @Override
+    public boolean isEliminated(){
+        return hand.isEmpty();
+    }
+
+    @Override
+    public abstract Card chooseCardToPlay(int currentSum);
+}
