@@ -13,7 +13,7 @@ import java.util.Stack;
 public class GameModel {
     private Deck deck;
     private List<IPlayer> players;
-    private Stack<Card> tablePile;
+    private Stack<Card> table;
     private HumanPlayer player;
     private int currentSum;
     private int playerIndex;
@@ -22,13 +22,13 @@ public class GameModel {
         currentSum = 0;
         playerIndex = 0;
         players = new ArrayList<>();
-        tablePile = new Stack<>();
+        table = new Stack<>();
     }
 
     public void startNewGame(int numBots){
         deck = new Deck();
         players.clear();
-        tablePile.clear();
+        table.clear();
         currentSum = 0;
         playerIndex = 0;
 
@@ -43,7 +43,7 @@ public class GameModel {
         }
 
         Card firstCard = deck.drawCard();
-        tablePile.push(firstCard);
+        table.push(firstCard);
         currentSum = firstCard.getValue(currentSum);
     }
 
@@ -57,11 +57,11 @@ public class GameModel {
         if(!card.isValidMove(currentSum)){return false;}
 
         player.removeCard(card);
-        tablePile.push(card);
+        table.push(card);
         currentSum += card.getValue(currentSum);
 
         if(deck.isEmpty()){
-            deck.recycleTableCards(new ArrayList<>(tablePile.subList(0, tablePile.size() - 1)));
+            deck.recycleTableCards(new ArrayList<>(table.subList(0, table.size() - 1)));
         }
 
         if(!deck.isEmpty()) {
@@ -107,4 +107,10 @@ public class GameModel {
 
         return players.size() < 2;
     }
+
+    public Card getTopCard(){
+        return table.peek();
+    }
+
+    public IPlayer getHumanPlayer(){return players.get(0);}
 }

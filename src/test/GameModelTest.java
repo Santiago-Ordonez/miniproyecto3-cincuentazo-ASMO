@@ -29,4 +29,12 @@ class GameModelTest {
 
         assertTrue(played);
     }
+
+    @Test
+    void testGetHumanPlayer() {
+        GameModel game = new GameModel();
+        game.startNewGame(3);
+
+        assertTrue(game.getHumanPlayer().isHuman());
+    }
 }

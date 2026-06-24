@@ -31,7 +31,6 @@ public class GameFlowManager {
 
                     if(gameModel.isGameOver()){controller.showGameOver();}
                     else{
-                        gameModel.nextTurn();
                         checkNextTurn();
                     }
                 });
@@ -40,7 +39,7 @@ public class GameFlowManager {
         new Thread(task).start();
     }
 
-    private void checkNextTurn(){
+    public void checkNextTurn(){
         if(gameModel.getCurrentPlayer().isHuman()){
             setPlayerInputEnabled(true);
         }else{
