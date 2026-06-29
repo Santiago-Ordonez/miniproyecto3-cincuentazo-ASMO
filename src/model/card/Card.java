@@ -1,5 +1,9 @@
 package model.card;
 
+/**
+ * Represents a playing card in the Cincuentazo game.
+ * Each card has a rank and suit with specific value rules.
+ */
 public class Card implements ICard{
     private final int rank;
     private final int suit;

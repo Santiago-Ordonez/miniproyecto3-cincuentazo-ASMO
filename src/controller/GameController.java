@@ -18,6 +18,10 @@ import utils.CardImageLoader;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Controller for the main game screen.
+ * Handles user interactions and updates the view.
+ */
 public class GameController {
     GameModel gameModel;
     private GameFlowManager flowManager;
@@ -49,6 +53,11 @@ public class GameController {
     @FXML
     public void initialize(){}
 
+    /**
+     * Initializes the game with the specified number of bots.
+     *
+     * @param numBots number of machine players
+     */
     public void startNewGame(int numBots){
         this.gameModel = new GameModel();
         this.flowManager = new GameFlowManager(gameModel, this);
@@ -57,6 +66,9 @@ public class GameController {
         updateView();
     }
 
+    /**
+     * Updates all visual elements of the game.
+     */
     public void updateView(){
         updateTopCard();
         updateTurnLabel();
@@ -105,6 +117,9 @@ public class GameController {
         }
     }
 
+    /**
+     * Updates the visual representation of the human player's hand.
+     */
     private void updatePlayerHand(){
         List<Card> hand = gameModel.getHumanPlayer().getHand();
         ImageView[] cardViews = {card1, card2, card3, card4};
@@ -150,8 +165,11 @@ public class GameController {
         return new ImageView[0];
     }
 
+    /**
+     * Handles when the human player clicks on one of his cards.
+     */
     @FXML
-    private void onCardClicked(MouseEvent event) throws InvalidMoveException {
+    private void onCardClicked(MouseEvent event){
         ImageView clicked = (ImageView) event.getSource();
         int index = getCardIndex(clicked);
 

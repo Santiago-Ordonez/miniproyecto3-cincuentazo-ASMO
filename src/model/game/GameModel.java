@@ -11,6 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+/**
+ * Main model class for the Cincuentazo game.
+ * Manages the deck, players, table pile, and game state.
+ */
 public class GameModel {
     private Deck deck;
     private List<IPlayer> players;
@@ -26,6 +30,11 @@ public class GameModel {
         table = new Stack<>();
     }
 
+    /**
+     * Starts a new game with the specified number of machine players.
+     *
+     * @param numBots number of machine opponents (1-3)
+     */
     public void startNewGame(int numBots){
         deck = new Deck();
         players.clear();
@@ -48,6 +57,14 @@ public class GameModel {
         currentSum = firstCard.getValue(currentSum);
     }
 
+    /**
+     * Attempts to play a card for a player.
+     *
+     * @param player the player trying to play
+     * @param card the card to play
+     * @return true if the card was successfully played
+     * @throws InvalidMoveException if the move is invalid
+     */
     public boolean playCard(IPlayer player, Card card) throws InvalidMoveException {
         if(player == null || card == null){return false;}
 
@@ -105,6 +122,11 @@ public class GameModel {
         else{playerIndex++;}
     }
 
+    /**
+     * Checks if the game has ended.
+     *
+     * @return true if only one player remains and cannot play
+     */
     public boolean isGameOver(){
         if(!players.contains(player)){return true;}
 

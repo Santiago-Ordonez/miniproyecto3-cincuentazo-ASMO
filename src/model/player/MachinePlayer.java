@@ -5,6 +5,9 @@ import model.card.Card;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents a machine player with simple  AI for card selection.
+ */
 public class MachinePlayer extends Player{
     public MachinePlayer(String name){
         super(name, false);

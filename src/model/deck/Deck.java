@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Manages the deck of cards, shuffling, drawing, and recycling.
+ */
 public class Deck implements IDeck{
     private List<Card> cards = new ArrayList<>();
 

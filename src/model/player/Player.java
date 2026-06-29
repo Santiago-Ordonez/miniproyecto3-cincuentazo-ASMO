@@ -5,6 +5,10 @@ import model.card.Card;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Abstract class for all players (human and Machine).
+ * Manages player's hand and common behavior.
+ */
 public abstract class Player implements IPlayer{
     protected String name;
     protected List<Card> hand;
